@@ -32,6 +32,14 @@ const LocationSchema = new mongoose.Schema({
     type: String,
     trim: true,
   },
+  radius: {
+    type: Number,
+    required: true,
+    default: 100, // Default radius in meters
+  },
+  lastNotified: {
+    type: Date,
+  },
 }, {
   timestamps: true,
 });

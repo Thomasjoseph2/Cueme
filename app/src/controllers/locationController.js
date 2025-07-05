@@ -18,7 +18,7 @@ export const getAllLocations = async (req, res) => {
 // @route   POST /api/locations
 // @access  Private
 export const createLocation = async (req, res) => {
-  const { title, latitude, longitude, reelUrl, imageUrl, notes } = req.body;
+  const { title, latitude, longitude, reelUrl, imageUrl, notes, radius } = req.body;
 
   try {
     let existingLocation = await Location.findOne({
@@ -38,6 +38,7 @@ export const createLocation = async (req, res) => {
       reelUrl,
       imageUrl,
       notes,
+      radius,
     });
 
     const location = await newLocation.save();

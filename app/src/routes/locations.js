@@ -1,14 +1,13 @@
-
 import express from 'express';
 const router = express.Router();
 import authMiddleware from '../middleware/authMiddleware.js';
+
 import {
   getAllLocations,
   createLocation,
   deleteLocation,
   updateLocation,
 } from '../controllers/locationController.js';
-
 // Protect all routes with authMiddleware
 router.use(authMiddleware);
 

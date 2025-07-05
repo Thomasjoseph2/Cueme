@@ -69,7 +69,8 @@ curl -X POST http://localhost:3000/api/locations \
   "longitude": 76.2999,
   "reelUrl": "https://instagram.com/reel/example",
   "imageUrl": "https://example.com/image.jpg",
-  "notes": "Must try their special shawarma!"
+  "notes": "Must try their special shawarma!",
+  "radius": 200
 }'
 ```
 *   **Note:** Replace `YOUR_ACCESS_TOKEN`.
@@ -105,4 +106,36 @@ curl -X DELETE http://localhost:3000/api/locations/LOCATION_ID \
 -H "Authorization: Bearer YOUR_ACCESS_TOKEN"
 ```
 *   **Note:** Replace `LOCATION_ID` with the actual ID of the location and `YOUR_ACCESS_TOKEN`.
+
+## Notification Endpoints
+
+### 9. Send a Common Notification
+Sends a notification to a specific topic (e.g., all users).
+
+```bash
+curl -X POST http://localhost:3000/api/notifications/send-common \
+-H "Content-Type: application/json" \
+-d '{
+  "title": "Test Notification",
+  "body": "This is a test notification to all users.",
+  "topic": "common"
+}'
+```'
+```
+```
+*   **Note:** Replace `YOUR_ACCESS_TOKEN`.
+
+### 10. Process Location Update
+Triggers a check to see if the user is near any of their saved locations.
+
+```bash
+curl -X POST http://localhost:3000/api/notifications/process-location \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
+-d '{
+  "currentLatitude": 10.0,
+  "currentLongitude": 76.3
+}'
+```
+*   **Note:** Replace `YOUR_ACCESS_TOKEN` and update the coordinates to a location near one of your saved locations.
 
